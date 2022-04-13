@@ -14,7 +14,6 @@
 	<nav class="navbar navbar-inverse navbar-fixed-top ">
 	  <div class="container">
 	    
-      <a class="navbar-brand" href="#">User Home</a>
       <a class="navbar-brand" href="#">Translate</a>
       <a class="navbar-brand" href="#">Login</a>
     </div>

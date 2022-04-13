@@ -60,8 +60,7 @@ public class SearchUser extends HttpServlet {
 
 
 
-              System.out.println(SLevel);
-              System.out.println(Q1);
+              
               
                 if (theUserName.contains(userName) && thePassword.contains(password)) 
                 {

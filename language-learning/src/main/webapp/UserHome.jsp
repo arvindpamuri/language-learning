@@ -86,17 +86,20 @@ footer {
 <section>
   <nav>
     <ul>
-      <li><a href="#">Level 1</a></li><br>
+    <h4>Spanish</h4>
+      <li><a href="#">Level 1</a></li>
+      <li><a href="#">Level 2</a></li>
+     <h4>Japanese</h4>
+      <li><a href="#">Level 1</a></li>
       <li><a href="#">Level 2</a></li><br>
-      <li><a href="#">Level 3</a></li><br>
       <li><a href="/language-learning/translate.html">Translate Sentences</a></li><br>
     </ul>
   </nav>
   
   <article>
     <h1>Welcome</h1>
-    <p>User Japanese Max: <%= Q1 %></p>
-     <p>User Japanese Level: <%=JLevel %></p>
+    <p>User Japanese Quiz Max: <%= Q1 %></p>
+    <p>User Japanese Level: <%=JLevel %></p>
     <p>User Spanish Quiz Max <%= Q2 %></p>
      <p>User Spanish Level: <%= SLevel %></p>
   </article>

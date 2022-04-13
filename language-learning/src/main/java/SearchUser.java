@@ -25,6 +25,7 @@ public class SearchUser extends HttpServlet {
    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	   String userName = request.getParameter("username");
 	   String password = request.getParameter("password");
+	   String Slevel = null;
        int flag = 0;
 
 	   
@@ -39,7 +40,12 @@ public class SearchUser extends HttpServlet {
             preparedStatement = connection.prepareStatement(selectSQL);
             preparedStatement.setString(1, userName);
             preparedStatement.setString(2, password);
-          
+
+            
+            
+            
+     
+       
          
             
             
@@ -47,11 +53,25 @@ public class SearchUser extends HttpServlet {
             while (rs.next()) {
                 String theUserName = rs.getString("USERNAME").trim();
                 String thePassword = rs.getString("PASSWORD").trim();
-                
+                String SLevel = rs.getString(4).trim();
+                String JLevel = rs.getString(5).trim();
+                String Q1 = rs.getString(6);
+                String Q2 = rs.getString(7);
+
+
+
+              System.out.println(SLevel);
+              System.out.println(Q1);
+              
                 if (theUserName.contains(userName) && thePassword.contains(password)) 
                 {
-                	RequestDispatcher ds = request.getRequestDispatcher("/home.html");
-                	ds.include(request, response);
+                	request.setAttribute("SLevel", SLevel);
+                	request.setAttribute("JLevel", JLevel);
+                	request.setAttribute("Q1", Q1);
+                	request.setAttribute("Q2", Q2);
+                	
+                	request.getRequestDispatcher("/UserHome.jsp").forward(request, response);
+                	
                 	flag = 1;
                 }
                 else 

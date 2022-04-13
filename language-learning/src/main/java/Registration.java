@@ -34,7 +34,7 @@ public class Registration extends HttpServlet {
       {
 
       Connection connection = null;
-      String insertSql = " INSERT INTO USER (USERNAME, PASSWORD, SPANISH_LEVEL, JAPANESE_LEVEL) values ( ?, ?,1,1)";
+      String insertSql = " INSERT INTO USER (USERID, USERNAME, PASSWORD, SPANISH_LEVEL, JAPANESE_LEVEL, QUIZ1_MAX, QUIZ2_MAX) values (default, ?, ?,1,1,0,0)";
 
       try {
          DBConnection.getDBConnection(getServletContext());

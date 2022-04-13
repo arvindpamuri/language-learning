@@ -70,7 +70,7 @@ public class translate extends HttpServlet {
 		System.out.println(tgt);
 		System.out.println(text);
         
-        String urlStr = "https://script.google.com/macros/s/AKfycbx0NdKeZknMBbtd1rzoWxEulQOUvfCNeY6GGIXeVHHFBxPv9e6DAWSTH2j_wyFwnszfzw/exec" +
+        String urlStr = "https://script.google.com/macros/s/AKfycbzvRGviD9lPmKUrrLwU256TyuhQz1B6Bs3hyQ9t0MfhNkjDgPkUIWGkZLHHqNAsXxWi/exec" +
                 "?q=" + URLEncoder.encode(text, "UTF-8") +
                 "&target=" + tgt +
                 "&source=" + src;

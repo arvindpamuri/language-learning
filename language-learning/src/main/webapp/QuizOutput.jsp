@@ -22,28 +22,48 @@
 
 	<% String userName = request.getAttribute("userName").toString(); %>
 	<% String userID = request.getAttribute("userID").toString(); %>
-	<% String result = request.getAttribute("result").toString(); %>
+	<% String usertext = request.getAttribute("usertext").toString(); %>
 	<% String text = request.getAttribute("text").toString(); %>
+	<% String tgt_text = request.getAttribute("tgt_text").toString(); %>
+	
+	<%System.out.println(usertext);
+	System.out.println(text);
+	%>
 	
 		
 	<div class="container">		
 		
 		<div class="jumbotron">
 		
+		<%
+			if(usertext.equals(text)) {
+		%>
 		
-		  <h1>Original</h1>
-		  <p><%= text %></p>
+		<h1>CORRECT</h1>
+		
+		<%
+	        } else {
+	    %>
+	        <h1>Wrong</h1>
+	    <%
+	        }
+	    %>
+		
+		<div class="row">
+			<p><%= tgt_text %></p>
+			  <h1>Means</h1>
+			  <p><%= text %></p>
+		</div>
 		  
-		  <h1>Translated sentence</h1>
-		  <p><%= result %></p>
+		  
+		  <h1>You entered</h1>
+		  <p><%= usertext %></p>
 		  
 		  <form action="TranslateNavigation">
 		    <input type="hidden" name="userName" value="${userName}">
 		  	<input type="hidden" name="userID" value="${userID}">
 		  	<input class="btn btn-primary btn-lg" type="submit" role="button" value="Translate Home"/>
 		  </form>
-		  
-		  
 		  
 		  
 		</div>

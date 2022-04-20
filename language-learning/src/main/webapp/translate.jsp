@@ -27,6 +27,7 @@
 				    
 			      <a class="navbar-brand" href="/language-learning/SignIn.html">Translate</a>
 			      <a class="navbar-brand">Logged in as <%= userName %> </a>
+			      <a class="navbar-brand">userid <%= userID %> </a>
 			      <a class="navbar-brand" href="#">Login</a>
 			    </div>
 			
@@ -66,6 +67,13 @@
 			  <input type="hidden" name="userID" value="${userID}">
 			  <button type="submit" class="btn btn-primary btn-lg active"value="Submit">Submit</button>
 			</form>
+			
+			<form action="TranslateQuiz">
+				<input type="hidden" name="userName" value="${userName}">
+			  	<input type="hidden" name="userID" value="${userID}">
+				<button type="submit" class="btn btn-primary btn-lg active mt-2"value="Submit">Take Quiz</button>
+			</form>
+			
 		</div>
 	
 		

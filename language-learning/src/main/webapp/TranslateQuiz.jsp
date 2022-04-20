@@ -22,7 +22,7 @@
 
 	<% String userName = request.getAttribute("userName").toString(); %>
 	<% String userID = request.getAttribute("userID").toString(); %>
-	<% String result = request.getAttribute("result").toString(); %>
+	<% String tgt_text = request.getAttribute("tgt_text").toString(); %>
 	<% String text = request.getAttribute("text").toString(); %>
 	
 		
@@ -31,11 +31,22 @@
 		<div class="jumbotron">
 		
 		
-		  <h1>Original</h1>
-		  <p><%= text %></p>
+		  <h3>Sentence in another language</h3>
+		  <p><%= tgt_text %></p>
 		  
-		  <h1>Translated sentence</h1>
-		  <p><%= result %></p>
+		  
+		  <form action="CheckAnswer">
+		    <div class="form-group mt-5">
+		    	<input type="hidden" name="userName" value="${userName}">
+		  		<input type="hidden" name="userID" value="${userID}">
+		  		<input type="hidden" name="text" value="${text}">
+		  		<input type="hidden" name="tgt_text" value="${tgt_text}">
+		    
+			    <h3>Type the equivalent in English</h3>
+			    <textarea class="form-control" rows="3" name="usertext"></textarea>
+			    <button type="submit" class="btn btn-primary btn-lg mt-2"value="Submit">Check</button>
+			</div>
+		  </form>
 		  
 		  <form action="TranslateNavigation">
 		    <input type="hidden" name="userName" value="${userName}">

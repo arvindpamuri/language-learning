@@ -41,13 +41,7 @@ public class SearchUser extends HttpServlet {
             preparedStatement.setString(1, userName);
             preparedStatement.setString(2, password);
 
-            
-            
-            
-     
-       
-         
-            
+            System.out.println(selectSQL);
             
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
@@ -58,9 +52,6 @@ public class SearchUser extends HttpServlet {
                 String JLevel = rs.getString(5).trim();
                 String Q1 = rs.getString(6);
                 String Q2 = rs.getString(7);
-
-
-                System.out.println("userid in searchuser"+userID);
               
               
                 if (theUserName.contains(userName) && thePassword.contains(password)) 

@@ -46,15 +46,14 @@ public class translate extends HttpServlet {
 			String userID = request.getParameter("userID");
 			
 			String text =  request.getParameter("text");
-			String tgt = request.getParameter("lang");
-			String tgt_text = translate_sentence("en", tgt, text);
+			String tgt_lang = request.getParameter("lang");
+			String tgt_text = translate_sentence("en", tgt_lang, text);
 			
 			
 			System.out.println("s:::::"+userID);
 //			throw new Exception();
 			
-			request.setAttribute("result", tgt_text);
-			request.setAttribute("text", text);
+			
 			
 //			System.out.println()
 			
@@ -68,12 +67,16 @@ public class translate extends HttpServlet {
 		         PreparedStatement preparedStmt = connection.prepareStatement(insertSql);
 		         preparedStmt.setString(1, userID);
 		         preparedStmt.setString(2, text);
-		         preparedStmt.setString(3, tgt);
-		         preparedStmt.setString(4, tgt_text);
+		         preparedStmt.setString(3, tgt_text);
+		         preparedStmt.setString(4, tgt_lang);
 		         preparedStmt.execute();
 		         connection.close();
 
-			
+		    
+		    request.setAttribute("userName", userName);
+		    request.setAttribute("userID", userID);
+		    request.setAttribute("result", tgt_text);
+			request.setAttribute("text", text);
 			request.getRequestDispatcher("/translated.jsp").forward(request, response);
 			
 		}

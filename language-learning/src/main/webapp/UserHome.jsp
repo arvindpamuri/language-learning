@@ -100,7 +100,7 @@ footer {
     <form action="TranslateNavigation">
 	    <input type="hidden" name="userName" value="${userName}">
 	  	<input type="hidden" name="userID" value="${userID}">
-	  	<input type="submit" id="translate" name="btn1"/>
+	  	<input type="submit" id="translate" name="btn1" value="Learn through translation"/>
   </form>
   
   

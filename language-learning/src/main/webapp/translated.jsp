@@ -35,7 +35,7 @@
 		  
 		  <h1>Translated sentence</h1>
 		  <p><%= result %></p>
-		  <p><a class="btn btn-primary btn-lg" href="/language-learning/translate.html" role="button">Translate Another</a></p>
+		  <p><a class="btn btn-primary btn-lg" href="/language-learning/translate.html" role="button">Translate Home</a></p>
 		</div>
 		
 	</div>

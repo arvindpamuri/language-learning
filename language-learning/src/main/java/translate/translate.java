@@ -1,5 +1,7 @@
 package translate;
 
+import database.DBConnection;
+
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,6 +9,10 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,19 +41,45 @@ public class translate extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		try {
+			
+			String userName = request.getParameter("userName");
+			String userID = request.getParameter("userID");
+			
 			String text =  request.getParameter("text");
 			String tgt = request.getParameter("lang");
-			String s = translate_sentence("en", tgt, text);
+			String tgt_text = translate_sentence("en", tgt, text);
 			
-			System.out.println("s:::::"+s);
+			
+			System.out.println("s:::::"+userID);
 //			throw new Exception();
 			
-			request.setAttribute("result", s);
+			request.setAttribute("result", tgt_text);
 			request.setAttribute("text", text);
+			
+//			System.out.println()
+			
+			Connection connection = null;
+		    String insertSql = " INSERT INTO TRANSLATE (USERID, TEXT, TGT_TEXT, TGT_LANG  ) values (?,?,?,?)";
+
+		      
+		      
+		         DBConnection.getDBConnection(getServletContext());
+		         connection = DBConnection.connection;
+		         PreparedStatement preparedStmt = connection.prepareStatement(insertSql);
+		         preparedStmt.setString(1, userID);
+		         preparedStmt.setString(2, text);
+		         preparedStmt.setString(3, tgt);
+		         preparedStmt.setString(4, tgt_text);
+		         preparedStmt.execute();
+		         connection.close();
+
+			
 			request.getRequestDispatcher("/translated.jsp").forward(request, response);
 			
 		}
 		catch (Exception e) {
+			
+			 System.out.println(e);
 	         
 	         request.getRequestDispatcher("/translateError.jsp").forward(request, response);
 		}
@@ -70,7 +102,7 @@ public class translate extends HttpServlet {
 		System.out.println(tgt);
 		System.out.println(text);
         
-        String urlStr = "https://script.google.com/macros/s/AKfycbzvRGviD9lPmKUrrLwU256TyuhQz1B6Bs3hyQ9t0MfhNkjDgPkUIWGkZLHHqNAsXxWi/exec" +
+        String urlStr = "https://script.google.com/macros/s/AKfycbzfrcq8wpNevXovImuS34rnhPXrLqem7UmvAsNgImE7peBCqY2IBahN_6YZ6he3F1xMnw/exec" +
                 "?q=" + URLEncoder.encode(text, "UTF-8") +
                 "&target=" + tgt +
                 "&source=" + src;

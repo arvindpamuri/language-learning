@@ -51,6 +51,7 @@ public class SearchUser extends HttpServlet {
             
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
+            	String userID = rs.getString(1).trim();
                 String theUserName = rs.getString("USERNAME").trim();
                 String thePassword = rs.getString("PASSWORD").trim();
                 String SLevel = rs.getString(4).trim();
@@ -59,15 +60,17 @@ public class SearchUser extends HttpServlet {
                 String Q2 = rs.getString(7);
 
 
-
+                System.out.println("userid in searchuser"+userID);
               
               
                 if (theUserName.contains(userName) && thePassword.contains(password)) 
                 {
+                	request.setAttribute("userName", theUserName);
                 	request.setAttribute("SLevel", SLevel);
                 	request.setAttribute("JLevel", JLevel);
                 	request.setAttribute("Q1", Q1);
                 	request.setAttribute("Q2", Q2);
+                	request.setAttribute("userID", userID);
                 	
                 	request.getRequestDispatcher("/UserHome.jsp").forward(request, response);
                 	

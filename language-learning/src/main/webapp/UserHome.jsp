@@ -72,6 +72,9 @@ footer {
 </style>
 </head>
 <body>
+
+<% String userName = request.getAttribute("userName").toString(); %>
+<% String userID = request.getAttribute("userID").toString(); %>
 <% String Q1 = request.getAttribute("Q1").toString(); %>
 <% String Q2 = request.getAttribute("Q2").toString(); %>
 
@@ -92,12 +95,21 @@ footer {
      <h4>Japanese</h4>
       <li><a href="#">Level 1</a></li>
       <li><a href="#">Level 2</a></li><br>
-      <li><a href="/language-learning/translate.html">Translate Sentences</a></li><br>
     </ul>
+    
+    <form action="TranslateNavigation">
+	    <input type="hidden" name="userName" value="${userName}">
+	  	<input type="hidden" name="userID" value="${userID}">
+	  	<input type="submit" id="translate" name="btn1"/>
+  </form>
+  
+  
   </nav>
   
+  
+  
   <article>
-    <h1>Welcome</h1>
+    <h1>Welcome <%= userName %></h1>
     <p>User Japanese Quiz Max: <%= Q1 %></p>
     <p>User Japanese Level: <%=JLevel %></p>
     <p>User Spanish Quiz Max <%= Q2 %></p>

@@ -55,7 +55,7 @@ public class TranslateQuiz extends HttpServlet {
 		        connection = DBConnection.connection;
 
 
-		        String selectSQL = "SELECT TEXT, TGT_TEXT FROM TRANSLATE WHERE USERID = " + userID  +" LIMIT 2 ;";
+		        String selectSQL = "SELECT TEXT, TGT_TEXT FROM TRANSLATE WHERE USERID = " + userID  +" ORDER BY RAND() LIMIT 2 ;";
 
 		        preparedStatement = connection.prepareStatement(selectSQL);
 		            

@@ -12,6 +12,15 @@
 		  background-color: #F0F8FF;
 		  
 		}
+		
+		nav {
+			background-color: rgb(86,61,124);
+			color: whitesmoke;
+		}
+		
+		.nav-text {
+			color: whitesmoke;
+		}
 	
 	</style>
 	</head>
@@ -20,24 +29,25 @@
 		<% String userName = request.getAttribute("userName").toString(); %>
 		<% String userID = request.getAttribute("userID").toString(); %>
 		
-		<div class="container">
 		
-			<nav class="navbar navbar-inverse navbar-fixed-top ">
+		<nav class="navbar navbar-inverse navbar-fixed-top ">
 				  <div class="container">
 				    
-			      <a class="navbar-brand" href="/language-learning/SignIn.html">Translate</a>
-			      <a class="navbar-brand">Logged in as <%= userName %> </a>
-			      <a class="navbar-brand">userid <%= userID %> </a>
-			      <a class="navbar-brand" href="#">Login</a>
+			      <a class="nav-text" href="SingUp.html">Sign Up Page</a>
+			      <a class="nav-text">Welcome <%= userName %> </a>
+			      <a class="nav-text" href="SingIn.html">Login Page</a>
 			    </div>
-			
-			</nav>
+		</nav>
+	
+		<div class="container mt-5">
 		
-			<h1 class="mt-20">Translate a sentence from English to other languages</h1>
+		
+			<h1>Translate a sentence from English to other languages</h1>
 			
 			
-			<form action="translate">
-			  <div class="form-group">
+			<div class=" row mt-5">
+				<form action="translate">
+			  <div class="form-group mt-10">
 			    <label for="exampleInputEmail1" name="text">Enter  an English sentence</label>
 			    <textarea class="form-control" rows="3" name="text"></textarea>
 			  </div>
@@ -63,10 +73,16 @@
 				  	</select>
 			  </div>
 			  
-			  <input type="hidden" name="userName" value="${userName}">
-			  <input type="hidden" name="userID" value="${userID}">
-			  <button type="submit" class="btn btn-primary btn-lg active"value="Submit">Submit</button>
+			  
+			  	  <input type="hidden" name="userName" value="${userName}">
+				  <input type="hidden" name="userID" value="${userID}">
+				  <button type="submit" class="btn btn-primary btn-lg active mt-2"value="Submit">Translate</button>
+			  
+			  
 			</form>
+			
+			</div>
+			
 			
 			<form action="TranslateQuiz">
 				<input type="hidden" name="userName" value="${userName}">

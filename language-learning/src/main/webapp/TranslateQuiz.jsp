@@ -7,24 +7,42 @@
 <title>Translate result</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
+<style type="text/css">
+	
+		body {
+		  background-color: #F0F8FF;
+		  
+		}
+		
+		nav {
+			background-color: rgb(86,61,124);
+			color: whitesmoke;
+		}
+		
+		.nav-text {
+			color: whitesmoke;
+		}
+	
+	</style>
 </head>
 <body>
 
-	<nav class="navbar navbar-inverse navbar-fixed-top ">
-	  <div class="container">
-	    
-      <a class="navbar-brand" href="#">Translate</a>
-      <a class="navbar-brand" href="#">Login</a>
-    </div>
-
-	</nav>
+	
 
 	<% String userName = request.getAttribute("userName").toString(); %>
 	<% String userID = request.getAttribute("userID").toString(); %>
 	<% String tgt_text = request.getAttribute("tgt_text").toString(); %>
 	<% String text = request.getAttribute("text").toString(); %>
 	
+	
+	<nav class="navbar navbar-inverse navbar-fixed-top ">
+				  <div class="container">
+				    
+			      <a class="nav-text" href="SingUp.html">Sign Up Page</a>
+			      <a class="nav-text">Welcome <%= userName %> </a>
+			      <a class="nav-text" href="SingIn.html">Login Page</a>
+			    </div>
+		</nav>
 		
 	<div class="container">		
 		

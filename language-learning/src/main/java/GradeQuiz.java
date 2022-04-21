@@ -4,7 +4,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -51,57 +54,105 @@ public class GradeQuiz extends HttpServlet {
 		
 		out.println(listQuestion + "</ul>\n");
 		
-		String quizVer = request.getParameter("submit");
-		
-		// these are for updating the DB
-		if (quizVer.equalsIgnoreCase("submit spanish quiz one")) {
-			quizVer = "sp1";
-		}
-		else if(quizVer.equalsIgnoreCase("submit spanish quiz two")) {
-			quizVer = "sp2";
-			/*
-			 * 1 = uno
-			 * 2 = ocho
-			 * 3 = diez
-			 * 4 = Catorce
-			 * 5 = Veinte
-			 * 6 = cero
-			 * 7 = Sesenta
-			 * 8 = Treinta y siete
-			 * 9 = Noventa y uno
-			 * 10 = Cien
-			 * i decided to just put correct and wrong for the return values on the inputs.
-			 */
-			
-		}
-		else if(quizVer.equalsIgnoreCase("submit spanish quiz three")) {
-			quizVer = "sp3";
-		}
-		else if(quizVer.equalsIgnoreCase("submit japanese quiz one")) {
-			quizVer = "jp1";
-		}
-		else if(quizVer.equalsIgnoreCase("submit japanese quiz two")) {
-			quizVer = "jp2";
-			/*
-			 * 1 =
-			 * 2 =
-			 * 3 =
-			 * 4 = 
-			 * 5 =
-			 * 6 =
-			 * 7 =
-			 * 8 =
-			 * 9 = 
-			 * 10 =
-			 */
-			
-		}
-		else if(quizVer.equalsIgnoreCase("submit japanese quiz three")) {
-			quizVer = "jp3";
-		}
-		
+		String subParam = request.getParameter("submit");
+		System.out.println(subParam);
+		String[] sArr = subParam.split(" ");
+		String quizVer = sArr[0];
+		String userName = sArr[1];
+		String password = "";
+		System.out.println(userName);
+		System.out.println(quizVer + " " + userName);
+	      Connection connection = null;
+	      PreparedStatement preparedStatement = null;
+	      try {
+	         DBConnection.getDBConnection(getServletContext());
+	         connection = DBConnection.connection;
+
+
+	            String selectSQL = "SELECT * FROM USER WHERE USERNAME = ?";
+	            preparedStatement = connection.prepareStatement(selectSQL);
+	            preparedStatement.setString(1, userName);
+
+	            ResultSet rs = preparedStatement.executeQuery();
+                String SLevel;
+                String JLevel;
+                String Q1;
+                String Q2;
+	            while (rs.next()) {
+	                password = rs.getString("PASSWORD");
+	                SLevel = rs.getString(4).trim();
+	                System.out.println(SLevel);
+	                JLevel = rs.getString(5).trim();
+	                System.out.println(JLevel);
+	                Q1 = rs.getString(6);//jq
+	                System.out.println(Q1);
+	                Q2 = rs.getString(7);//sq
+	                System.out.println(Q2);
+	          
+				// these are for updating the DB
+				if(quizVer.equals("sp1") || quizVer.equals("sp2") || quizVer.equals("sp3")) {
+					
+					String x;
+					if (quizVer.equals("sp1")) {
+						x = "2";
+					}
+					else if(quizVer.equals("sp2")){
+						x = "3";
+					}
+					else {
+						x = "Done";
+					}
+					
+					int score = Integer.parseInt(Q2);
+					selectSQL = "UPDATE USER SET SPANISH_LEVEL = ?, QUIZ2_MAX = ? WHERE USERNAME = ?";
+		            preparedStatement = connection.prepareStatement(selectSQL);
+		            preparedStatement.setString(1, x);
+					if(score < numCorrect) {
+						x = "" + numCorrect;
+					}
+					else {
+						x = "" + score;
+					}
+		            preparedStatement.setString(2, x);
+		            preparedStatement.setString(3, userName);
+		            
+				}
+				else {
+					
+					String x;
+					if (quizVer.equals("jp1")) {
+						x = "2";
+					}
+					else if(quizVer.equals("jp2")){
+						x = "3";
+					}
+					else {
+						x = "Done";
+					}
+					int score = Integer.parseInt(Q1);
+					selectSQL = "UPDATE USER SET JAPANESE_LEVEL = ?, QUIZ1_MAX = ? WHERE USERNAME = ?";
+		            preparedStatement = connection.prepareStatement(selectSQL);
+		            preparedStatement.setString(1, x);
+					if(score < numCorrect) {
+						x = "" + numCorrect;
+					}
+					else {
+						x = "" + score;
+					}
+		            preparedStatement.setString(2, x);
+		            preparedStatement.setString(3,  userName);
+				} 
+	        }
+	        preparedStatement.execute(); 
+		} catch (SQLException se) {
+	         se.printStackTrace();
+	      }
 	      // goes to user page, please connect
-	      out.println("<a href=\"\"</a>Return to User Home<br>");
+	        out.println("<form action=\"SearchUser\" method=\"post\">\n"
+	        		+ "<input type=\"hidden\" name=\"username\" value=\"" + userName + "\">\n"
+	        		+ "<input type=\"hidden\" name=\"password\" value=\"" + password + "\">\n"
+	        		+ "<button style=\" background-color: powderblue\" name=\"submit\"  type=\"submit\">Return to Home Page</button>\n"
+	        		+ "</form>\n");
 	      out.println("</body></html>");
 		
 	}

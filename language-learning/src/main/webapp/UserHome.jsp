@@ -11,25 +11,28 @@
   box-sizing: border-box;
 }
 
+
 body {
   font-family: Arial, Helvetica, sans-serif;
+ 
+  background-image: url('https://t3.ftcdn.net/jpg/03/81/37/64/360_F_381376456_Ccr2vArc8tANGqhCaA1zJungBgNIzBb2.jpg');
 }
 
 /* Style the header */
 header {
-  background-color: lightBlue;
   padding: 30px;
   text-align: center;
-  font-size: 35px;
-  color: white;
+  font-size: 45px;
+  color: black;
 }
 
 /* Create two columns/boxes that floats next to each other */
 nav {
+  font-size: 20px;
+
   float: left;
   width: 30%;
   height: 300px; /* only for demonstration, should be removed */
-  background: #ccc;
   padding: 20px;
 }
 
@@ -40,10 +43,11 @@ nav ul {
 }
 
 article {
+  font-size: 25px;
   float: left;
   padding: 20px;
   width: 70%;
-  background-color: #f1f1f1;
+
   height: 300px; /* only for demonstration, should be removed */
 }
 
@@ -56,8 +60,8 @@ section::after {
 
 /* Style the footer */
 footer {
-  background-color: lightBlue;
-  padding: 10px;
+  font-size: 30px;
+  padding: 100px;
   text-align: center;
   color: white;
 }
@@ -65,6 +69,7 @@ footer {
 /* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
 @media (max-width: 600px) {
   nav, article {
+  
     width: 100%;
     height: auto;
   }
@@ -88,13 +93,16 @@ footer {
 
 <section>
   <nav>
-    <ul>
+    
+     <ul>
     <h4>Spanish</h4>
-      <li><a href="#">Level 1</a></li>
-      <li><a href="#">Level 2</a></li>
+      <li><a href="/language-learning/level_one_sp.jsp?userName=<%=userName%>">Level 1</a></li><br>
+      <li><a href="/language-learning/level_two_sp.jsp?userName=<%=userName%>">Level 2</a></li><br>
      <h4>Japanese</h4>
-      <li><a href="#">Level 1</a></li>
-      <li><a href="#">Level 2</a></li><br>
+      <li><a href="/language-learning/level_one_jp.jsp?userName=<%=userName%>">Level 1</a></li><br>
+      <li><a href="/language-learning/level_two_jp.jsp?userName=<%=userName%>">Level 2</a></li><br>
+      <h4>Translate Page</h4>
+      <li><a href="/language-learning/translate.html">Translate Sentences</a></li><br>
     </ul>
     
     <form action="TranslateNavigation">

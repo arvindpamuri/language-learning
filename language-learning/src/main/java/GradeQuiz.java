@@ -92,14 +92,14 @@ public class GradeQuiz extends HttpServlet {
 				// these are for updating the DB
 				if(quizVer.equals("sp1") || quizVer.equals("sp2") || quizVer.equals("sp3")) {
 					
-					String x;
-					if (quizVer.equals("sp1")) {
+					String x = SLevel;
+					if (quizVer.equals("sp1") && numCorrect > 6 && !quizVer.equals("sp3")) {
 						x = "2";
 					}
-					else if(quizVer.equals("sp2")){
+					else if(quizVer.equals("sp2") && numCorrect > 6 && !quizVer.equals("sp3")){
 						x = "3";
 					}
-					else {
+					else if(numCorrect > 6) {
 						x = "Done";
 					}
 					
@@ -119,14 +119,14 @@ public class GradeQuiz extends HttpServlet {
 				}
 				else {
 					
-					String x;
-					if (quizVer.equals("jp1")) {
+					String x = JLevel;
+					if (quizVer.equals("jp1") && numCorrect > 6 && !quizVer.equals("jp3")) {
 						x = "2";
 					}
-					else if(quizVer.equals("jp2")){
+					else if(quizVer.equals("jp2") && numCorrect > 6 && !quizVer.equals("jp3")){
 						x = "3";
 					}
-					else {
+					else if (numCorrect > 6){
 						x = "Done";
 					}
 					int score = Integer.parseInt(Q1);

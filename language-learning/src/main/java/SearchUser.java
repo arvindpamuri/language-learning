@@ -65,9 +65,7 @@ public class SearchUser extends HttpServlet {
                 	request.setAttribute("Q1", Q1);
                 	request.setAttribute("Q2", Q2);
                 	request.setAttribute("userName", userName);
-                	
                 	request.getRequestDispatcher("/UserHome.jsp").forward(request, response);
-                	
                 	flag = 1;
                 }
                 else 
@@ -75,7 +73,6 @@ public class SearchUser extends HttpServlet {
                 	RequestDispatcher ds = request.getRequestDispatcher("/Error-Message.html");
                 	ds.include(request, response);
                 }
-               
              }
             
          

@@ -81,11 +81,11 @@ footer {
   <nav>
     <ul>
     <h4>Spanish</h4>
-      <li><a href="#">Level 1</a></li><br>
+      <li><a href="/language-learning/level_one_sp.jsp?userName=<%=userName%>">Level 1</a></li><br>
       <li><a href="/language-learning/level_two_sp.jsp?userName=<%=userName%>">Level 2</a></li><br>
       <li><a href="#">Level 3</a></li><br>
      <h4>Japanese</h4>
-      <li><a href="#">Level 1</a></li><br>
+      <li><a href="/language-learning/level_one_jp.jsp?userName=<%=userName%>">Level 1</a></li><br>
       <li><a href="/language-learning/level_two_jp.jsp?userName=<%=userName%>">Level 2</a></li><br>
       <li><a href="#">Level 3</a></li><br>
       <h4>Translate Page</h4>

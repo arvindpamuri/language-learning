@@ -90,19 +90,15 @@ public class GradeQuiz extends HttpServlet {
 	                System.out.println(Q2);
 	          
 				// these are for updating the DB
-				if(quizVer.equals("sp1") || quizVer.equals("sp2") || quizVer.equals("sp3")) {
+				if(quizVer.equals("sp1") || quizVer.equals("sp2")) {
 					
 					String x = SLevel;
-					if (quizVer.equals("sp1") && numCorrect > 6 && !quizVer.equals("sp3")) {
+					if (quizVer.equals("sp1") && numCorrect > 6) {
 						x = "2";
 					}
-					else if(quizVer.equals("sp2") && numCorrect > 6 && !quizVer.equals("sp3")){
-						x = "3";
-					}
-					else if(numCorrect > 6) {
+					else if(quizVer.equals("sp2") && numCorrect > 6){
 						x = "Done";
 					}
-					
 					int score = Integer.parseInt(Q2);
 					selectSQL = "UPDATE USER SET SPANISH_LEVEL = ?, QUIZ2_MAX = ? WHERE USERNAME = ?";
 		            preparedStatement = connection.prepareStatement(selectSQL);
@@ -120,13 +116,10 @@ public class GradeQuiz extends HttpServlet {
 				else {
 					
 					String x = JLevel;
-					if (quizVer.equals("jp1") && numCorrect > 6 && !quizVer.equals("jp3")) {
+					if (quizVer.equals("jp1") && numCorrect > 6) {
 						x = "2";
 					}
-					else if(quizVer.equals("jp2") && numCorrect > 6 && !quizVer.equals("jp3")){
-						x = "3";
-					}
-					else if (numCorrect > 6){
+					else if(quizVer.equals("jp2") && numCorrect > 6){
 						x = "Done";
 					}
 					int score = Integer.parseInt(Q1);

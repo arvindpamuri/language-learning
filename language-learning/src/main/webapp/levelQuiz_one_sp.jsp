@@ -111,7 +111,7 @@ img {vertical-align: middle;}
 }
 a {color: black}
 h1 {text-align: center}
-body {background-image: url(./images/backgroundjp.jpg)}
+body {background-image: url(./images/background.jpg)}
 </style>
 </head>
 <body>
